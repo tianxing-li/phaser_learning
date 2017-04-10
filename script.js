@@ -26,10 +26,9 @@ function create() {
     balls.physicsBodyType = Phaser.Physics.ARCADE;
 
     balls.createMultiple(10, 'ball');
-    balls.setAll('checkWorldBounds', true);
-    balls.setAll('outOfBoundsKill', true);
-    balls.setAll('collideWorldBounds', true);
-    balls.setAll('bounce', 0.9);
+    //balls.setAll('collideWorldBounds', true);
+    //balls.setAll('checkWorldBounds', true);
+    //balls.setAll('outOfBoundsKill', true);
     balls.setAll('setCircle', 45);
 }
 
@@ -42,15 +41,16 @@ function update() {
 	if (game.input.activePointer.isDown) {
 		toPos = game.input.activePointer.position.clone();
 
-		g.beginFill(0x000000);
-		g.drawRect(0, 0, 200, 200);
-		g.endFill();
+		g.clear();
 
     	g.lineStyle(2, 0xffffff, 1);
     	g.moveTo(fromPos.x, fromPos.y);
     	g.lineTo(toPos.x, toPos.y);
-    	
+	} else {
+		g.clear();
 	}
+
+	game.physics.arcade.collide(balls, balls);
 
 	game.debug.text('update', 100, 100);
 	game.debug.text('Left Button: ' + game.input.activePointer.isDown, 100, 132);
@@ -63,17 +63,18 @@ function mouseDown() {
 }
 
 function mouseUp() {
-	
-
-	if (balls.countDead() > 0)
+	if (balls.countDead() == 0)
     {
-        var ball = balls.getFirstDead();
-        console.log(ball.body);
-        ball.anchor.x = 0.5;
-        ball.anchor.y = 0.5;
-
-        ball.reset(toPos.x, toPos.y);
-
-        //game.physics.arcade.moveToPointer(balls, 300);
+    	balls.getRandom().kill();
     }
+    
+    var ball = balls.getFirstDead();
+    
+    ball.anchor.x = 0.5;
+    ball.anchor.y = 0.5;
+    ball.body.bounce.setTo(0.95, 0.95);
+    ball.body.collideWorldBounds = true;
+
+    ball.reset(toPos.x, toPos.y);
+    ball.body.velocity.set(toPos.x-fromPos.x, toPos.y-fromPos.y);
 }
