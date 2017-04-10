@@ -39,25 +39,23 @@ var toPos = new Phaser.Point();
 var balls;
 
 function update() {
+	if (game.input.activePointer.isDown) {
+		toPos = game.input.activePointer.position.clone();
+
+		g.beginFill(0xffff00);
+		g.drawRect(0, 0, game.with, game.height);
+		g.endFill();
+
+    	g.lineStyle(2, 0x00ff00, 1);
+    	g.moveTo(fromPos.x, fromPos.y);
+    	g.lineTo(toPos.x, toPos.y);
+    	
+	}
+
 	game.debug.text('update', 100, 100);
 	game.debug.text('Left Button: ' + game.input.activePointer.isDown, 100, 132);
 	game.debug.text('formPos: ' + fromPos.x + ', ' + fromPos.y, 100, 164);
 	game.debug.text('toPos: '+ toPos.x + ', ' + toPos.y, 100, 196);
-
-	
-
-	if (game.input.activePointer.isDown) {
-		toPos = game.input.activePointer.position.clone();
-
-		g.beginFill(0x000000);
-		g.drawRect(0, 0, game.with, game.height);
-
-    		g.lineStyle(2, 0x00ff00, 1);
-    		g.moveTo(fromPos.x, fromPos.y);
-    		g.lineTo(toPos.x, toPos.y);
-		
-    		g.endFill();
-	}
 }
 
 function mouseDown() {
