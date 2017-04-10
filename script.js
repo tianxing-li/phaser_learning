@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-pacman', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-learning', { preload: preload, create: create, update: update });
 
 function preload() {
 	game.load.image('ball', 'assets/pics/wizball.png');
@@ -42,11 +42,11 @@ function update() {
 	if (game.input.activePointer.isDown) {
 		toPos = game.input.activePointer.position.clone();
 
-		g.beginFill(0xffff00);
-		g.drawRect(0, 0, game.with, game.height);
+		g.beginFill(0x000000);
+		g.drawRect(0, 0, 200, 200);
 		g.endFill();
 
-    	g.lineStyle(2, 0x00ff00, 1);
+    	g.lineStyle(2, 0xffffff, 1);
     	g.moveTo(fromPos.x, fromPos.y);
     	g.lineTo(toPos.x, toPos.y);
     	
