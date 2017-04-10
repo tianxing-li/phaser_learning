@@ -49,14 +49,14 @@ function update() {
 	if (game.input.activePointer.isDown) {
 		toPos = game.input.activePointer.position.clone();
 
+		g.beginFill(0x000000);
 		g.drawRect(0, 0, game.with, game.height);
 
-		g.beginFill(0x0000ff);
-    	g.lineStyle(2, 0x00ff00, 1);
-
-    	g.moveTo(fromPos.x, fromPos.y);
-    	g.lineTo(toPos.x, toPos.y);
-    	g.endFill();
+    		g.lineStyle(2, 0x00ff00, 1);
+    		g.moveTo(fromPos.x, fromPos.y);
+    		g.lineTo(toPos.x, toPos.y);
+		
+    		g.endFill();
 	}
 }
 
