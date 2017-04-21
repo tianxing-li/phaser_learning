@@ -25,7 +25,7 @@ function create() {
     balls.enableBody = true;
     balls.physicsBodyType = Phaser.Physics.ARCADE;
 
-    balls.createMultiple(15, 'ball');
+    balls.createMultiple(100, 'ball');
     //balls.setAll('collideWorldBounds', true);
     //balls.setAll('checkWorldBounds', true);
     //balls.setAll('outOfBoundsKill', true);
