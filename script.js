@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-learning', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1600, 900, Phaser.AUTO, 'phaser-learning', { preload: preload, create: create, update: update });
 
 function preload() {
 	game.load.image('ball', 'assets/pics/wizball.png');
